@@ -1,0 +1,157 @@
+//fonts
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Montserrat:wght@100;200;300;400;500&display=swap');
+//font-family: 'EB Garamond', serif;
+//font-family: 'Montserrat', sans-serif;
+
+//reset
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+//mixins
+@mixin viewport-4{@media(min-width:400px){@content;}}
+@mixin viewport-6{@media(min-width:784px){@content;}}
+@mixin viewport-8{@media(min-width:1200px){@content;}}
+
+//variables
+$bg1: #e6ddde;
+$bg2: #dbdbd3;
+$bg3: #fff6f4;
+$titleColor-1: #093737;
+$titleColor-2: #00282e;
+$garamond: 'EB Garamond', serif;
+$montserrat: 'Montserrat', sans-serif;
+//home
+.top {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg1;
+    @include viewport-4() {
+
+        & header {
+            width: 100%;
+            padding:1.5rem 1rem;
+            & h1 {
+                text-transform: uppercase;
+                font-size: 2.5rem;
+                font-family: $garamond;
+                color: $titleColor-2;
+                font-weight: 800;
+                text-align: center;
+            }
+        }
+        & .home {
+            width: 100%;
+            font-family: sans-serif;
+            & .content {
+                margin-top: 2rem;
+                padding-bottom: 2rem;
+                & .list {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    justify-items: center;
+                    grid-column-gap: 1rem;
+                    grid-row-gap: 2rem;
+                    & a {
+                        text-decoration: none;
+                        color: $titleColor-2;
+                        max-width: 300px;
+                        width: 100%;
+                        height: 320px;
+                        border-radius: 50% 50% 0 0;
+                        border: 1px solid #000;
+                        & li {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50% 50% 0 0;
+                            position: relative;
+                            & .flowerImage {
+                                width: 99%;
+                                border-radius: 50px 50px 0 0;
+                                margin: 2px;
+                                height: 100%;
+                                overflow: hidden;
+                                & img {
+                                    width: 100%;
+                                    height: 98%;
+                                    border-radius: 50% 50% 0 0;
+                                    object-fit: cover;
+                                }
+                            }
+                            & .flowerContent {
+                                width: 100%;
+                                padding: 1rem .5rem;
+                                position: absolute;
+                                bottom: 2%;
+                                left: 0;
+                                right: 0;
+                                background-color: #fff;
+                                opacity: 0;
+                                transition:.6s ease-out;
+                                & .title {
+                                    text-align: center;
+                                    font-size: 1.25rem;
+                                    font-weight: 400;
+                                    font-family: $montserrat;
+                                }
+
+                            }
+                        }
+
+                        &:hover {
+                            box-shadow: 3px 3px #f79797;
+                            & li {
+                                & .flowerContent {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include viewport-6() {
+
+        & .home {
+
+            & .content {
+
+                & .list {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+    }
+    @include viewport-8() {
+
+        & .home {
+
+            & .content {
+
+                & .list {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+    }
+}
